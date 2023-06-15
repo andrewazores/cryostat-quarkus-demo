@@ -28,59 +28,9 @@ services:
       start_period: 10s
       timeout: 5s
 
-  quarkus-native:
-    depends_on:
-      db2:
-        condition: service_healthy
-    image: quay.io/roberttoyonaga/jmx:cryostatquarkus
-    command: >
-      "./application"
-      "-Dquarkus.http.host=0.0.0.0"
-      "-Dcom.sun.management.jmxremote.port=9092"
-      "-Dcom.sun.management.jmxremote.ssl=false"
-      "-Dcom.sun.management.jmxremote.authenticate=false"
-      "-Djava.rmi.server.hostname=quarkus-native"
-    hostname: quarkus-native
-    labels:
-      - io.cryostat.discovery=true
-      - io.cryostat.jmxPort=9092
-      - io.cryostat.jmxHost=${QUARKUS_NI_JMX_HOST:-quarkus-native}
-    expose:
-      - 8081
-      - 9092
-    ports:
-      - '8081:8081'
-    environment:
-      QUARKUS_HTTP_PORT: 8081
-      QUARKUS_DATASOURCE_JDBC_URL: 'jdbc:postgresql://db2/quarkus_test'
-    restart: unless-stopped
-    healthcheck:
-      test: curl --fail http://localhost:8081/ || exit 1
-      interval: 10s
-      retries: 3
-      start_period: 10s
-      timeout: 5s
-
   db1:
     image: postgres:13.3
     hostname: db1
-    expose:
-      - 5432
-    environment:
-      POSTGRES_USER: quarkus_test
-      POSTGRES_PASSWORD: quarkus_test
-      POSTGRES_DB: quarkus_test
-    restart: unless-stopped
-    healthcheck:
-      test: pg_isready -U quarkus_test -d quarkus_test || exit 1
-      interval: 10s
-      retries: 3
-      start_period: 10s
-      timeout: 5s
-
-  db2:
-    image: postgres:13.3
-    hostname: db2
     expose:
       - 5432
     environment:
