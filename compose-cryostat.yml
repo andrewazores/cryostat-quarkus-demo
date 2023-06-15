@@ -48,3 +48,9 @@ services:
       - CRYOSTAT_HIBERNATE_DIALECT=${HIBERNATE_DIALECT:-org.hibernate.dialect.H2Dialect}
       - CRYOSTAT_HBM2DDL=${HBM2DDL:-update}
       - CRYOSTAT_JMX_CREDENTIALS_DB_PASSWORD=quarkus_test
+    healthcheck:
+      test: curl -k --fail "http://localhost:8181/health/liveness"
+      interval: 10s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
