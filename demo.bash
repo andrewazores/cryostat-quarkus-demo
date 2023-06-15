@@ -4,11 +4,7 @@
 set -x
 set -e
 
-COMPOSE=(
-    "compose-quarkus.yml"
-    "compose-cryostat.yml"
-)
-
+mapfile -t COMPOSE < <(ls -1 ./compose-*.yml)
 flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 
 teardown() {
