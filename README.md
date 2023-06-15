@@ -107,13 +107,16 @@ Navigate to:
 
 Have fun, and join the team of contributors!
 
-## Running the demo in Kubernetes
+## Running the demo in Compose
 
-This section provides extra information for running both the database and the demo on Kubernetes.
-As well as running the DB on Kubernetes, a service needs to be exposed for the demo to connect to the DB.
-
-Then, rebuild demo docker image with a system property that points to the DB. 
-
+Ensure that the container images are prepared:
 ```bash
--Dquarkus.datasource.jdbc.url=jdbc:postgresql://<DB_SERVICE_NAME>/quarkus_test
+$ sh build-images.sh
 ```
+
+Then tear down any prior existing compose setup and spin up a new one:
+```bash
+$ docker-compose down --volumes --remove-orphans ; docker-compose up
+```
+
+Open `http://localhost:8080` and `http://localhost:8081` in your browser to visit the JVM and native-mode instances, respectively.
