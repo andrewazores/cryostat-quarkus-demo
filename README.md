@@ -114,9 +114,9 @@ Ensure that the container images are prepared:
 $ sh build-images.sh
 ```
 
-Then tear down any prior existing compose setup and spin up a new one:
+Then run the demo:
 ```bash
-$ docker-compose -f compose-quarkus.yml -f compose-cryostat.yml down --volumes --remove-orphans ; docker-compose -f compose-quarkus.yml -f compose-cryostat.yml up
+$ bash demo.bash
 ```
 
 Open `http://localhost:8080` and `http://localhost:8081` in your browser to visit the JVM and native-mode instances, respectively.
