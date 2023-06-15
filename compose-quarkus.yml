@@ -11,6 +11,7 @@ services:
     labels:
       - io.cryostat.discovery=true
       - io.cryostat.jmxPort=9090
+      - io.cryostat.jmxHost=${QUARKUS_JVM_JMX_HOST:-quarkus-jvm}
     expose:
       - 8080
       - 9090
@@ -43,6 +44,7 @@ services:
     labels:
       - io.cryostat.discovery=true
       - io.cryostat.jmxPort=9092
+      - io.cryostat.jmxHost=${QUARKUS_NI_JMX_HOST:-quarkus-native}
     expose:
       - 8081
       - 9092
