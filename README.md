@@ -26,6 +26,8 @@ In addition, you will need either a PostgreSQL database, or Docker to run one.
 Make sure that both the `GRAALVM_HOME` and `JAVA_HOME` environment variables have
 been set, and that a JDK 11+ `java` command is on the path.
 
+[Mandrel 23+](https://github.com/graalvm/mandrel/releases) is recommended as the GraalVM implementation for this demo.
+
 See the [Building a Native Executable guide](https://quarkus.io/guides/building-native-image)
 for help setting up your environment.
 
