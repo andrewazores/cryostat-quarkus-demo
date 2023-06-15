@@ -8,6 +8,9 @@ services:
         condition: service_healthy
     image: quay.io/andrewazores/quarkus-quickstart-hibernate:jvm-latest
     hostname: quarkus-jvm
+    labels:
+      - io.cryostat.discovery=true
+      - io.cryostat.jmxPort=9090
     expose:
       - 8080
       - 9090
@@ -30,8 +33,12 @@ services:
         condition: service_healthy
     image: quay.io/andrewazores/quarkus-quickstart-hibernate:native-latest
     hostname: quarkus-native
+    labels:
+      - io.cryostat.discovery=true
+      - io.cryostat.jmxPort=9092 # TODO, need to compile the image with this supported + enabled
     expose:
       - 8081
+      - 9092
     ports:
       - '8081:8081'
     environment:

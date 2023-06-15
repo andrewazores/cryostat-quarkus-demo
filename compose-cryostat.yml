@@ -5,6 +5,9 @@ services:
   cryostat:
     image: quay.io/cryostat/cryostat:2.4.0-snapshot
     hostname: cryostat
+    labels:
+      - io.cryostat.discovery=true
+      - io.cryostat.jmxUrl=service:jmx:rmi:///jndi/rmi://localhost:0/jmxrmi
     expose:
       - 8181
     ports:
@@ -18,11 +21,13 @@ services:
       - /opt/cryostat.d/templates.d
       - /truststore
       - /opt/cryostat.d/conf.d/probes.d
+    volumes:
+      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/run/user/0/podman/podman.sock:Z
     security_opt:
       - label=disable
     environment:
       - CRYOSTAT_ENABLE_JDP_BROADCAST=true
-      - CRYOSTAT_PLATFORM=io.cryostat.platform.internal.DefaultPlatformStrategy
+      - CRYOSTAT_PLATFORM=io.cryostat.platform.internal.DefaultPlatformStrategy,io.cryostat.platform.internal.PodmanPlatformStrategy
       - CRYOSTAT_DISABLE_SSL=true
       - CRYOSTAT_DISABLE_JMX_AUTH=${CRYOSTAT_DISABLE_JMX_AUTH:-true}
       - CRYOSTAT_ALLOW_UNTRUSTED_SSL=true
