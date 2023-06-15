@@ -31,11 +31,11 @@ services:
     depends_on:
       db2:
         condition: service_healthy
-    image: quay.io/andrewazores/quarkus-quickstart-hibernate:native-latest
+    image: quay.io/roberttoyonaga/jmx:cryostatquarkus
     hostname: quarkus-native
     labels:
       - io.cryostat.discovery=true
-      - io.cryostat.jmxPort=9092 # TODO, need to compile the image with this supported + enabled
+      - io.cryostat.jmxPort=9092
     expose:
       - 8081
       - 9092
