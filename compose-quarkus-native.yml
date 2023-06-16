@@ -6,7 +6,7 @@ services:
     depends_on:
       db2:
         condition: service_healthy
-    image: quay.io/roberttoyonaga/jmx:cryostatquarkus
+    image: quay.io/andrewazores/quarkus-quickstart-hibernate:native-latest
     command: >
       "./application"
       "-Dquarkus.http.host=0.0.0.0"
