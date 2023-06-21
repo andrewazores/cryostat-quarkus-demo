@@ -18,7 +18,6 @@ services:
     labels:
       - io.cryostat.discovery=true
       - io.cryostat.jmxPort=9092
-      - io.cryostat.jmxHost=quarkus-native
     expose:
       - 8081
       - 9092
