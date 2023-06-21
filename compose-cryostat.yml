@@ -29,7 +29,7 @@ services:
       - CRYOSTAT_ENABLE_JDP_BROADCAST=true
       - CRYOSTAT_PLATFORM=io.cryostat.platform.internal.DefaultPlatformStrategy,io.cryostat.platform.internal.PodmanPlatformStrategy
       - CRYOSTAT_DISABLE_SSL=true
-      - CRYOSTAT_DISABLE_JMX_AUTH=${CRYOSTAT_DISABLE_JMX_AUTH:-true}
+      - CRYOSTAT_DISABLE_JMX_AUTH=true
       - CRYOSTAT_ALLOW_UNTRUSTED_SSL=true
       - CRYOSTAT_RJMX_PORT=9091
       - CRYOSTAT_RMI_PORT=9091
@@ -42,11 +42,11 @@ services:
       - CRYOSTAT_TEMPLATE_PATH=/opt/cryostat.d/templates.d
       - CRYOSTAT_PROBE_TEMPLATE_PATH=/opt/cryostat.d/conf.d/probes.d
       - CRYOSTAT_CLIENTLIB_PATH=/clientlib
-      - CRYOSTAT_JDBC_DRIVER=${JDBC_DRIVER:-org.h2.Driver}
-      - CRYOSTAT_JDBC_URL=${JDBC_URL:-jdbc:h2:file:/opt/cryostat.d/conf.d/h2;INIT=create domain if not exists jsonb as varchar}
-      - CRYOSTAT_JDBC_USERNAME=${JDBC_USERNAME:-cryostat}
-      - CRYOSTAT_HIBERNATE_DIALECT=${HIBERNATE_DIALECT:-org.hibernate.dialect.H2Dialect}
-      - CRYOSTAT_HBM2DDL=${HBM2DDL:-update}
+      - CRYOSTAT_JDBC_DRIVER=org.h2.Driver
+      - CRYOSTAT_JDBC_URL=jdbc:h2:file:/opt/cryostat.d/conf.d/h2;INIT=create domain if not exists jsonb as varchar
+      - CRYOSTAT_JDBC_USERNAME=cryostat
+      - CRYOSTAT_HIBERNATE_DIALECT=org.hibernate.dialect.H2Dialect
+      - CRYOSTAT_HBM2DDL=update
       - CRYOSTAT_JMX_CREDENTIALS_DB_PASSWORD=quarkus_test
     healthcheck:
       test: curl -k --fail "http://localhost:8181/health/liveness"
