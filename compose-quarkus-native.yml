@@ -7,13 +7,13 @@ services:
       db2:
         condition: service_healthy
     image: quay.io/andrewazores/quarkus-quickstart-hibernate:native-latest
-    command: >
-      "./application"
-      "-Dquarkus.http.host=0.0.0.0"
-      "-Dcom.sun.management.jmxremote.port=9092"
-      "-Dcom.sun.management.jmxremote.ssl=false"
-      "-Dcom.sun.management.jmxremote.authenticate=false"
-      "-Djava.rmi.server.hostname=quarkus-native"
+    command: >-
+      ./application
+      -Dquarkus.http.host=0.0.0.0
+      -Dcom.sun.management.jmxremote.port=9092
+      -Dcom.sun.management.jmxremote.ssl=false
+      -Dcom.sun.management.jmxremote.authenticate=false
+      -Djava.rmi.server.hostname=quarkus-native
     hostname: quarkus-native
     labels:
       - io.cryostat.discovery=true
