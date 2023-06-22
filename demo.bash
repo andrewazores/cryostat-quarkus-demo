@@ -7,7 +7,11 @@ set -e
 mapfile -t COMPOSE < <(ls -1 ./compose-*.yml)
 flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 
+# requires https://github.com/figiel/hosts
+export LD_PRELOAD=$HOME/bin/libuserhosts.so
+
 teardown() {
+  > ~/.hosts
   if podman volume exists cryostat_quarkus_demo; then
     podman volume rm -f cryostat_quarkus_demo
   fi
@@ -16,6 +20,12 @@ teardown() {
 }
 teardown
 trap teardown EXIT
+
+setupUserHosts() {
+    > ~/.hosts
+    echo "localhost grafana" >> ~/.hosts
+}
+setupUserHosts
 
 vol="$(podman volume create cryostat_quarkus_demo)"
 tmp="$(mktemp)"
