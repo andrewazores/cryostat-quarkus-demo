@@ -22,7 +22,7 @@ flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 
 # requires https://github.com/figiel/hosts
 if [ -f "$HOME/bin/libuserhosts.so" ]; then
-  export LD_PRELOAD=$HOME/bin/libuserhosts.so
+  export LD_PRELOAD="$HOME/bin/libuserhosts.so"
 fi
 
 original_hosts="$(cat ~/.hosts)"
