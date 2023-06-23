@@ -25,12 +25,13 @@ if [ -f "$HOME/bin/libuserhosts.so" ]; then
   export LD_PRELOAD="$HOME/bin/libuserhosts.so"
 fi
 
-original_hosts="$(cat ~/.hosts)"
+user_hosts="$HOME/.hosts"
+original_hosts="$(cat "${user_hosts}")"
 
 extras_volume="cryostat_quarkus_demo"
 
 teardown() {
-  echo -n "${original_hosts}" > ~/.hosts
+  echo -n "${original_hosts}" > "${user_hosts}"
   if podman volume exists "${extras_volume}"; then
     podman volume rm -f "${extras_volume}"
   fi
@@ -41,7 +42,7 @@ teardown
 trap teardown EXIT
 
 setupUserHosts() {
-    echo -e "\nlocalhost grafana\nlocalhost cryostat" >> ~/.hosts
+    echo -e "\nlocalhost grafana\nlocalhost cryostat" >> "${user_hosts}"
 }
 setupUserHosts
 
