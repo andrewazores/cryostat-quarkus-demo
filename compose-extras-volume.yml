@@ -1,0 +1,5 @@
+version: '3'
+
+volumes:
+  cryostat_quarkus_demo:
+    external: true
