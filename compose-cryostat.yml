@@ -82,7 +82,7 @@ services:
     volumes:
       - cryostat_quarkus_demo:/extras
     healthcheck:
-      test: curl -k --fail http://localhost:10001
+      test: curl -k --fail http://localhost:10001/health
       interval: 10s
       retries: 3
       start_period: 10s
