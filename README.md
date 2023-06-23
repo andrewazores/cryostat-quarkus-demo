@@ -121,6 +121,12 @@ Then run the demo:
 $ bash demo.bash
 ```
 
+This demo setup assumes the following:
+- `podman` `v.4.5.0+` is on `$PATH`
+- `docker-compose` `v1.29.2+` is on `$PATH`
+- rootless `podman` is configured and there is a `"${XDG_RUNTIME_DIR}/podman/podman.sock"`
+- `DOCKER_HOST=unix://${XDG_RUNTIME_DIR}/podman/podman.sock` is set in the environment, so `docker-compose` talks to `podman` as the container engine
+
 Open `http://localhost:8080` and `http://localhost:8081` in your browser to visit the JVM and native-mode instances, respectively.
 Open `http://localhost:8181` to visit Cryostat.
 
