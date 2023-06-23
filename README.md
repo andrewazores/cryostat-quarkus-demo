@@ -100,36 +100,3 @@ Next, maybe you're ready to measure how much memory this service is consuming.
 N.B. This implies all dependencies have been compiled to native;
 that's a whole lot of stuff: from the bytecode enhancements that Hibernate ORM
 applies to your entities, to the lower level essential components such as the PostgreSQL JDBC driver, the Undertow webserver.
-
-## See the demo in your browser
-
-Navigate to:
-
-<http://localhost:8080/index.html>
-
-Have fun, and join the team of contributors!
-
-## Running the demo in Compose
-
-Ensure that the container images are prepared:
-```bash
-$ sh build-images.sh
-```
-
-Then run the demo:
-```bash
-$ bash demo.bash
-```
-
-This demo setup assumes the following:
-- `podman` `v.4.5.0+` is on `$PATH`
-- `docker-compose` `v1.29.2+` is on `$PATH`
-- rootless `podman` is configured and there is a `"${XDG_RUNTIME_DIR}/podman/podman.sock"`
-- `DOCKER_HOST=unix://${XDG_RUNTIME_DIR}/podman/podman.sock` is set in the environment, so `docker-compose` talks to `podman` as the container engine
-
-Open `http://localhost:8080` and `http://localhost:8081` in your browser to visit the JVM and native-mode instances, respectively.
-Open `http://localhost:8181` to visit Cryostat.
-
-For `View in Grafana` features to work, you will either need [userhosts](https://github.com/figiel/hosts) or to
-otherwise configure the `compose-grafana.yml` and `compose-cryostat.yml` somehow so that the Grafana dashboard
-container has a hostname or domain name that can be resolved both by the Cryostat container and by your host machine.
