@@ -10,8 +10,10 @@ flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 # requires https://github.com/figiel/hosts
 export LD_PRELOAD=$HOME/bin/libuserhosts.so
 
+original_hosts="$(cat ~/.hosts)"
+
 teardown() {
-  > ~/.hosts
+  echo -n "${original_hosts}" > ~/.hosts
   if podman volume exists cryostat_quarkus_demo; then
     podman volume rm -f cryostat_quarkus_demo
   fi
@@ -22,8 +24,7 @@ teardown
 trap teardown EXIT
 
 setupUserHosts() {
-    > ~/.hosts
-    echo "localhost grafana" >> ~/.hosts
+    echo -e "\nlocalhost grafana\nlocalhost cryostat" >> ~/.hosts
 }
 setupUserHosts
 
