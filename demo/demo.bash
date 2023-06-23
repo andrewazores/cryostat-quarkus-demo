@@ -16,8 +16,9 @@ for req in "${REQUIREMENTS[@]}"; do
   fi
 done
 
+basedir="$(dirname -- "$0")"
 
-mapfile -t COMPOSE < <(ls -1 ./compose-*.yml)
+mapfile -t COMPOSE < <(ls -1 "${basedir}"/compose-*.yml)
 flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 
 # requires https://github.com/figiel/hosts
@@ -48,7 +49,7 @@ setupUserHosts
 
 vol="$(podman volume create "${extras_volume}")"
 tmp="$(mktemp)"
-tar cf "${tmp}" extras/*.jar
+tar cf "${tmp}" "${basedir}/"extras/*.jar
 podman volume import "${vol}" "${tmp}"
 
 docker-compose $flags up
