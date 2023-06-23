@@ -70,7 +70,6 @@ services:
     environment:
       QUARKUS_HTTP_PORT: 10001
       JAVA_OPTS: >-
-        -XX:ActiveProcessorCount=1
         -Dcom.sun.management.jmxremote.autodiscovery=true
         -Dcom.sun.management.jmxremote.port=10002
         -Dcom.sun.management.jmxremote.rmi.port=10002
