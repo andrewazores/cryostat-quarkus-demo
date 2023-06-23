@@ -30,6 +30,7 @@ services:
         -Dcom.sun.management.jmxremote.authenticate=false
         -Dcom.sun.management.jmxremote.ssl=false
         -Dcom.sun.management.jmxremote.local.only=false
+      CRYOSTAT_AGENT_APP_NAME: hibernate-orm-quickstart
       CRYOSTAT_AGENT_BASEURI: http://cryostat:8181/
       CRYOSTAT_AGENT_CALLBACK: http://quarkus-jvm.dns.podman:9977/
     volumes:
