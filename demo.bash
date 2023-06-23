@@ -21,7 +21,9 @@ mapfile -t COMPOSE < <(ls -1 ./compose-*.yml)
 flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 
 # requires https://github.com/figiel/hosts
-export LD_PRELOAD=$HOME/bin/libuserhosts.so
+if [ -f "$HOME/bin/libuserhosts.so" ]; then
+  export LD_PRELOAD=$HOME/bin/libuserhosts.so
+fi
 
 original_hosts="$(cat ~/.hosts)"
 
