@@ -14,17 +14,17 @@
             <method>
                 <name>get</name>
                 <descriptor>(Ljava/lang/Integer;)Lorg/acme/hibernate/orm/Fruit;</descriptor>
+                <parameters>
+                   <parameter index="0">
+                       <name>klazz</name>
+                       <contenttype>Class</contenttype>
+                   </parameter>
+                   <parameter index="1">
+                       <name>key</name>
+                       <contenttype>None</contenttype>
+                   </parameter>
+               </parameters>
             </method>
-            <parameters>
-               <parameter index="0">
-                   <name>klazz</name>
-                   <contenttype>Class</contenttype>
-               </parameter>
-               <parameter index="1">
-                   <name>key</name>
-                   <contenttype>None</contenttype>
-               </parameter>
-           </parameters>
         </event>
     </events>
 </jfragent>
