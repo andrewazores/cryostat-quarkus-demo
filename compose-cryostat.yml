@@ -75,6 +75,12 @@ services:
         -Dcom.sun.management.jmxremote.rmi.port=10002
         -Dcom.sun.management.jmxremote.authenticate=false
         -Dcom.sun.management.jmxremote.ssl=false
+        -javaagent:/extras/extras/cryostat-agent-0.3.0-SNAPSHOT.jar
+      CRYOSTAT_AGENT_APP_NAME: cryostat-reports
+      CRYOSTAT_AGENT_BASEURI: http://cryostat:8181/
+      CRYOSTAT_AGENT_CALLBACK: http://reports:9977/
+    volumes:
+      - cryostat_quarkus_demo:/extras
     healthcheck:
       test: curl -k --fail http://localhost:10001
       interval: 10s
