@@ -4,6 +4,19 @@
 set -x
 set -e
 
+REQUIREMENTS=(
+  "podman"
+  "docker-compose"
+)
+
+for req in "${REQUIREMENTS[@]}"; do
+  if ! command -v "${req}"; then
+    echo -e "\n\t'${req}' not found\n"
+    exit 1
+  fi
+done
+
+
 mapfile -t COMPOSE < <(ls -1 ./compose-*.yml)
 flags=$(printf -- "-f %s " "${COMPOSE[@]}")
 
