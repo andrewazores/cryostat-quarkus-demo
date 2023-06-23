@@ -123,3 +123,7 @@ $ bash demo.bash
 
 Open `http://localhost:8080` and `http://localhost:8081` in your browser to visit the JVM and native-mode instances, respectively.
 Open `http://localhost:8181` to visit Cryostat.
+
+For `View in Grafana` features to work, you will either need [userhosts](https://github.com/figiel/hosts) or to
+otherwise configure the `compose-grafana.yml` and `compose-cryostat.yml` somehow so that the Grafana dashboard
+container has a hostname or domain name that can be resolved both by the Cryostat container and by your host machine.
