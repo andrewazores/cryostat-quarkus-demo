@@ -1,0 +1,30 @@
+<jfragent>
+    <config>
+        <classprefix>__JFREvent</classprefix>
+        <allowtostring>true</allowtostring>
+        <allowconverter>true</allowconverter>
+    </config>
+    <events>
+        <event id="io.cryostat.quarkus.demo.event1">
+            <label>Cryostat Quarkus Demo Event 1</label>
+            <class>org.acme.hibernate.orm.FruitResource</class>
+            <stacktrace>true</stacktrace>
+            <rethrow>true</rethrow>
+            <location>WRAP</location>
+            <method>
+                <name>get</name>
+                <descriptor>(Ljava/lang/Integer;)Lorg/acme/hibernate/orm/Fruit;</descriptor>
+            </method>
+            <parameters>
+               <parameter index="0">
+                   <name>klazz</name>
+                   <contenttype>Class</contenttype>
+               </parameter>
+               <parameter index="1">
+                   <name>key</name>
+                   <contenttype>None</contenttype>
+               </parameter>
+           </parameters>
+        </event>
+    </events>
+</jfragent>
