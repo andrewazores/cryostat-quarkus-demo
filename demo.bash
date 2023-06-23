@@ -12,10 +12,12 @@ export LD_PRELOAD=$HOME/bin/libuserhosts.so
 
 original_hosts="$(cat ~/.hosts)"
 
+extras_volume="cryostat_quarkus_demo"
+
 teardown() {
   echo -n "${original_hosts}" > ~/.hosts
-  if podman volume exists cryostat_quarkus_demo; then
-    podman volume rm -f cryostat_quarkus_demo
+  if podman volume exists "${extras_volume}"; then
+    podman volume rm -f "${extras_volume}"
   fi
   docker-compose $flags down --volumes --remove-orphans
   rm -f "${tmp}"
@@ -28,7 +30,7 @@ setupUserHosts() {
 }
 setupUserHosts
 
-vol="$(podman volume create cryostat_quarkus_demo)"
+vol="$(podman volume create "${extras_volume}")"
 tmp="$(mktemp)"
 tar cf "${tmp}" extras/*.jar
 podman volume import "${vol}" "${tmp}"
